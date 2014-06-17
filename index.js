@@ -86,13 +86,6 @@ function watchify (files, opts) {
     
     function invalidate (id) {
         delete cache[id];
-        if (fwatchers[id]) {
-            fwatchers[id].forEach(function (w) {
-                w.close();
-            });
-            delete fwatchers[id];
-            delete fwatcherFiles[id];
-        }
         changingDeps[id] = true
         
         // wait for the disk/editor to quiet down first:
